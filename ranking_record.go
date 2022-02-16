@@ -70,8 +70,11 @@ func (record *RankingRecord) Get(userID string) Rank {
 	return 0
 }
 func (record *RankingRecord) PrintDebug(score uint64, level int) {
+
 	prefix := ""
+
 	for i := 0; i < level; i++ {
+
 		prefix += " "
 	}
 	record.mux.Lock()

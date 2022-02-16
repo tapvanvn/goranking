@@ -13,9 +13,10 @@ import (
 	"github.com/tapvanvn/goutil"
 )
 
-const MAX = 100
+const MAX = 100_000_000
+const TABLE_SIZE = 1_000
 
-var system = goranking.NewRankingSystem(10)
+var system = goranking.NewRankingSystem(TABLE_SIZE)
 
 var mux sync.Mutex
 var lastScore map[uint64]uint64 = map[uint64]uint64{}
@@ -46,7 +47,7 @@ func main() {
 	port := "9000"
 
 	goutil.Schedule(RandomScore, 5*time.Millisecond)
-	goutil.Schedule(Debug, 1*time.Second)
+	//# goutil.Schedule(Debug, 1*time.Second)
 
 	http.HandleFunc("/score/", func(w http.ResponseWriter, r *http.Request) {
 

@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-const MAX = 100
+const MAX = 100_000_000
 
 func main() {
 	for {
