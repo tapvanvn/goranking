@@ -20,20 +20,23 @@ func NewRankingRecord() *RankingRecord {
 	}
 }
 
-func (record *RankingRecord) Leave(userID string) {
+func (record *RankingRecord) Leave(userID string) bool {
 
 	record.mux.Lock()
+	defer record.mux.Unlock()
 	if _, ok := record.users[userID]; ok {
 
 		delete(record.users, userID)
 		record.numUser--
 		var i uint64 = 0
+		fmt.Printf("leave user:%s  numafter:%d\n", userID, record.numUser)
 		for user, _ := range record.users {
 			record.users[user] = i
 			i++
 		}
+		return true
 	}
-	record.mux.Unlock()
+	return false
 }
 
 func (record *RankingRecord) Join(userID string) Rank {

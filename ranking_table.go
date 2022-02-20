@@ -34,12 +34,15 @@ func (table *RankingTable) Leave(score uint64, userID string) {
 	if !ok {
 		log.Fatal("record not found")
 	}
-	table.mux.Lock()
-	table.numRecord--
-	table.mux.Unlock()
 
-	record.Leave(userID)
-	needUpdate = true
+	if record.Leave(userID) {
+
+		table.mux.Lock()
+		table.numRecord--
+		table.mux.Unlock()
+
+		needUpdate = true
+	}
 
 	if needUpdate {
 
