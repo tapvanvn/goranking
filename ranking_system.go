@@ -33,6 +33,7 @@ func (sys *RankingSystem) PutScore(userID string, oldScore uint64, score uint64)
 		sys.tableMux.Unlock()
 
 		if !ok {
+
 			log.Fatal("last score not found")
 		}
 
@@ -40,9 +41,11 @@ func (sys *RankingSystem) PutScore(userID string, oldScore uint64, score uint64)
 
 	}
 	if score == 0 {
+
 		return Rank(0)
 	}
 	sys.tableMux.Lock()
+
 	table, ok := sys.tables[tableID]
 
 	if !ok {
@@ -80,7 +83,9 @@ func (sys *RankingSystem) GetScore(userID string, lastScore uint64) Rank {
 		//fmt.Println("get:", userID, lastScore, tableID)
 		rank := table.Get(lastScore, userID)
 		if rank > 0 {
+
 			if rank > sys.maxRank {
+
 				return 1
 			}
 			return sys.maxRank - rank
