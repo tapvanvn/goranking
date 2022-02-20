@@ -1,6 +1,7 @@
 package goranking
 
 import (
+	"fmt"
 	"log"
 	"sort"
 	"sync"
@@ -69,6 +70,8 @@ func (table *RankingTable) Join(score uint64, userID string) Rank {
 	table.numRecord++
 
 	table.mux.Unlock()
+
+	fmt.Println("join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
 
 	if needUpdate {
 
