@@ -147,7 +147,7 @@ func (sys *RankingSystem) run() {
 func (sys *RankingSystem) PrintDebug() {
 
 	sys.tableMux.Lock()
-
+	fmt.Printf("Ranking system: max:%d\n", sys.maxRank)
 	for _, tableID := range sys.tableIDs {
 
 		table := sys.tables[tableID]

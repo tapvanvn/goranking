@@ -88,6 +88,6 @@ func (record *RankingRecord) PrintDebug(score uint64, level int) {
 
 	for user, rank := range record.users {
 
-		fmt.Printf(" %suser:%s rank:%d\n", prefix, user, record.beginRank+Rank(rank))
+		fmt.Printf("\t%suser:%s rank:%d\n", prefix, user, record.beginRank+Rank(rank))
 	}
 }
