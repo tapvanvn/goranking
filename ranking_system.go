@@ -84,13 +84,14 @@ func (sys *RankingSystem) GetScore(userID string, lastScore uint64) Rank {
 	if ok {
 
 		rank := table.Get(lastScore, userID)
-		fmt.Printf("get: user:%s, last:%d, tableID:%d rank:%d max:%d\n", userID, lastScore, tableID, rank, sys.maxRank)
+		resultRank := Rank(1)
 
-		if rank >= sys.maxRank {
+		if rank < sys.maxRank {
 
-			return 1
+			resultRank = sys.maxRank - rank + 1
 		}
-		return sys.maxRank - rank + 1
+		fmt.Printf("get: user:%s, last:%d, tableID:%d rank:%d rsRank:%d max:%d\n", userID, lastScore, tableID, rank, resultRank, sys.maxRank)
+		return resultRank
 
 	} else {
 
