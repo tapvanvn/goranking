@@ -32,7 +32,6 @@ func (record *RankingRecord) Leave(userID string) {
 			record.users[user] = i
 			i++
 		}
-		//fmt.Printf("user:%v\n", record.users)
 	}
 	record.mux.Unlock()
 }
@@ -79,7 +78,9 @@ func (record *RankingRecord) PrintDebug(score uint64, level int) {
 	}
 	record.mux.Lock()
 	defer record.mux.Unlock()
+
 	fmt.Printf("%sscore:%d begin:%d numUser:%d\n", prefix, score, record.beginRank, len(record.users))
+
 	for user, rank := range record.users {
 
 		fmt.Printf(" %suser:%s rank:%d\n", prefix, user, record.beginRank+Rank(rank))

@@ -54,7 +54,9 @@ func (table *RankingTable) Join(score uint64, userID string) Rank {
 	record, ok := table.records[score]
 
 	needUpdate := false
+
 	fmt.Println("begin join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
+
 	if !ok {
 
 		record = NewRankingRecord()
@@ -103,6 +105,8 @@ func (table *RankingTable) UpdateRecordRank() {
 
 		record := table.records[score]
 		record.beginRank = currRank
+
+		fmt.Printf("update table record: score:%d begin:%d numuser:%d cur:%d\n", score, record.beginRank, record.numUser, currRank)
 
 		table.numRecord += record.numUser
 		currRank += Rank(record.numUser)
