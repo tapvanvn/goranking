@@ -62,8 +62,11 @@ func (sys *RankingSystem) PutScore(userID string, oldScore uint64, score uint64)
 	if rank > sys.maxRank {
 
 		sys.maxRank = rank
+
+	} else {
+
+		resultRank = sys.maxRank - rank + 1
 	}
-	resultRank = sys.maxRank - rank + 1
 
 	sys.updateMux.Lock()
 	if score < sys.lastUpdateScore || sys.lastUpdateScore == 0 {
@@ -130,9 +133,9 @@ func (sys *RankingSystem) run() {
 
 			lastRank += Rank(table.numRecord)
 		}
-		if lastRank-1 > sys.maxRank {
+		if lastRank > sys.maxRank {
 
-			sys.maxRank = lastRank - 1
+			sys.maxRank = lastRank
 		}
 
 		//fmt.Println("---END UPDATE---")
