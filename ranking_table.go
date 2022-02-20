@@ -54,7 +54,7 @@ func (table *RankingTable) Join(score uint64, userID string) Rank {
 	record, ok := table.records[score]
 
 	needUpdate := false
-
+	fmt.Println("begin join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
 	if !ok {
 
 		record = NewRankingRecord()
@@ -71,7 +71,7 @@ func (table *RankingTable) Join(score uint64, userID string) Rank {
 
 	table.mux.Unlock()
 
-	fmt.Println("join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
+	fmt.Println("\tafter join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
 
 	if needUpdate {
 
