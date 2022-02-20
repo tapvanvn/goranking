@@ -62,7 +62,7 @@ func (table *RankingTable) Join(score uint64, userID string) Rank {
 
 	if !ok {
 
-		record = NewRankingRecord()
+		record = NewRankingRecord(table)
 
 		table.records[score] = record
 
@@ -78,11 +78,14 @@ func (table *RankingTable) Join(score uint64, userID string) Rank {
 
 	fmt.Println("\tafter join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
 
-	if needUpdate {
+	resultRank := table.beginRank + record.Join(userID)
+
+	if needUpdate || resultRank > 0 {
 
 		table.UpdateRecordRank()
 	}
-	return table.beginRank + record.Join(userID)
+
+	return resultRank
 }
 
 func (table *RankingTable) Get(lastScore uint64, userID string) Rank {

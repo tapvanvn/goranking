@@ -6,16 +6,17 @@ import (
 )
 
 type RankingRecord struct {
+	table     *RankingTable
 	beginRank Rank
 	numUser   uint64
 	users     map[string]uint64
 	mux       sync.Mutex
 }
 
-func NewRankingRecord() *RankingRecord {
+func NewRankingRecord(rankingTable *RankingTable) *RankingRecord {
 
 	return &RankingRecord{
-
+		table: rankingTable,
 		users: map[string]uint64{},
 	}
 }
