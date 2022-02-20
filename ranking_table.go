@@ -107,7 +107,9 @@ func (table *RankingTable) UpdateRecordRank() {
 		table.numRecord += record.numUser
 		currRank += Rank(record.numUser)
 	}
+
 	table.mux.Unlock()
+
 }
 
 func (table *RankingTable) PrintDebug(level int) {

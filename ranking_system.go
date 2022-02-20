@@ -128,6 +128,7 @@ func (sys *RankingSystem) run() {
 			flip = table.numRecord > 0
 		}
 		sys.tableMux.Unlock()
+
 	}
 }
 
