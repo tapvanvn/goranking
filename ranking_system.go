@@ -121,6 +121,7 @@ func (sys *RankingSystem) run() {
 			table := sys.tables[tableID]
 
 			table.beginRank = lastRank
+			fmt.Printf("\t--table:%d num:%d\n", table.beginRank, table.numRecord)
 
 			lastRank += Rank(table.numRecord)
 		}
