@@ -57,18 +57,19 @@ func (sys *RankingSystem) PutScore(userID string, oldScore uint64, score uint64)
 	}
 	sys.tableMux.Unlock()
 
-	sys.updateMux.Lock()
-	if score < sys.lastUpdateScore || sys.lastUpdateScore == 0 {
-		sys.lastUpdateScore = score
-	}
-	sys.updateMux.Unlock()
-
 	rank := table.Join(score, userID)
 
 	if rank > sys.maxRank {
 
 		sys.maxRank = rank
 	}
+
+	sys.updateMux.Lock()
+	if score < sys.lastUpdateScore || sys.lastUpdateScore == 0 {
+		sys.lastUpdateScore = score
+	}
+	sys.updateMux.Unlock()
+
 	return rank
 }
 
