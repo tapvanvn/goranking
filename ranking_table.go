@@ -78,7 +78,7 @@ func (table *RankingTable) Join(score uint64, userID string) Rank {
 
 	fmt.Println("\tafter join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
 
-	resultRank := table.beginRank + record.Join(userID)
+	resultRank := table.beginRank + record.Join(userID) + 1
 
 	if needUpdate || resultRank > 0 {
 
