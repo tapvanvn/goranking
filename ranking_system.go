@@ -90,7 +90,7 @@ func (sys *RankingSystem) GetScore(userID string, lastScore uint64) Rank {
 
 			resultRank = sys.maxRank - rank + 1
 		}
-		fmt.Printf("get: user:%s, last:%d, tableID:%d rank:%d rsRank:%d max:%d\n", userID, lastScore, tableID, rank, resultRank, sys.maxRank)
+		//fmt.Printf("get: user:%s, last:%d, tableID:%d rank:%d rsRank:%d max:%d\n", userID, lastScore, tableID, rank, resultRank, sys.maxRank)
 		return resultRank
 
 	} else {
@@ -117,7 +117,7 @@ func (sys *RankingSystem) run() {
 
 		sys.tableMux.Lock()
 
-		fmt.Println("---BEGIN UPDATE---")
+		//fmt.Println("---BEGIN UPDATE---")
 
 		lastRank := Rank(0)
 
@@ -126,7 +126,7 @@ func (sys *RankingSystem) run() {
 			table := sys.tables[tableID]
 
 			table.beginRank = lastRank
-			fmt.Printf("\t--table:%d num:%d\n", table.beginRank, table.numRecord)
+			//fmt.Printf("\t--table:%d num:%d\n", table.beginRank, table.numRecord)
 
 			lastRank += Rank(table.numRecord)
 		}
@@ -135,7 +135,7 @@ func (sys *RankingSystem) run() {
 			sys.maxRank = lastRank - 1
 		}
 
-		fmt.Println("---END UPDATE---")
+		//fmt.Println("---END UPDATE---")
 		sys.tableMux.Unlock()
 
 	}

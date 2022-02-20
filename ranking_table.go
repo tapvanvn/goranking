@@ -1,7 +1,6 @@
 package goranking
 
 import (
-	"fmt"
 	"log"
 	"sort"
 	"sync"
@@ -58,7 +57,7 @@ func (table *RankingTable) Join(score uint64, userID string) Rank {
 
 	needUpdate := false
 
-	fmt.Println("begin join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
+	//fmt.Println("begin join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
 
 	if !ok {
 
@@ -76,7 +75,7 @@ func (table *RankingTable) Join(score uint64, userID string) Rank {
 
 	table.mux.Unlock()
 
-	fmt.Println("\tafter join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
+	//fmt.Println("\tafter join table:", table.beginRank, userID, "score:", score, "num:", table.numRecord)
 
 	resultRank := table.beginRank + record.Join(userID)
 
@@ -98,7 +97,7 @@ func (table *RankingTable) Get(lastScore uint64, userID string) Rank {
 		recordRank := record.Get(userID)
 
 		resultRank := table.beginRank + recordRank
-		fmt.Printf("table get: userID:%s last:%d begin:%d recordRank:%d result:%d\n", userID, lastScore, table.beginRank, recordRank, resultRank)
+		//fmt.Printf("table get: userID:%s last:%d begin:%d recordRank:%d result:%d\n", userID, lastScore, table.beginRank, recordRank, resultRank)
 		return resultRank
 	}
 	return 0
@@ -115,7 +114,7 @@ func (table *RankingTable) UpdateRecordRank() {
 		record := table.records[score]
 		record.beginRank = currRank
 
-		fmt.Printf("update table record: score:%d begin:%d numuser:%d cur:%d\n", score, record.beginRank, record.numUser, currRank)
+		//fmt.Printf("update table record: score:%d begin:%d numuser:%d cur:%d\n", score, record.beginRank, record.numUser, currRank)
 
 		table.numRecord += record.numUser
 		currRank += Rank(record.numUser)

@@ -30,7 +30,7 @@ func (record *RankingRecord) Leave(userID string) bool {
 		delete(record.users, userID)
 		record.numUser--
 		var i uint64 = 0
-		fmt.Printf("leave user:%s  numafter:%d\n", userID, record.numUser)
+		//fmt.Printf("leave user:%s  numafter:%d\n", userID, record.numUser)
 		for user, _ := range record.users {
 			record.users[user] = i
 			i++
