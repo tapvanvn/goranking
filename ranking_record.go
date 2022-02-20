@@ -74,8 +74,9 @@ func (record *RankingRecord) PrintDebug(score uint64, level int) {
 
 	for i := 0; i < level; i++ {
 
-		prefix += " "
+		prefix += "\t"
 	}
+
 	record.mux.Lock()
 	defer record.mux.Unlock()
 

@@ -120,7 +120,7 @@ func (table *RankingTable) UpdateRecordRank() {
 func (table *RankingTable) PrintDebug(level int) {
 	prefix := ""
 	for i := 0; i < level; i++ {
-		prefix += " "
+		prefix += "\t"
 	}
 	table.mux.Lock()
 	for _, score := range table.scores {

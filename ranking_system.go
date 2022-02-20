@@ -116,24 +116,13 @@ func (sys *RankingSystem) run() {
 
 		lastRank := Rank(0)
 
-		flip := false
-
 		for _, tableID := range sys.tableIDs {
 
 			table := sys.tables[tableID]
 
-			if flip {
-
-				table.beginRank = lastRank + 1
-
-			} else {
-
-				table.beginRank = lastRank
-			}
+			table.beginRank = lastRank
 
 			lastRank += Rank(table.numRecord)
-
-			flip = table.numRecord > 0
 		}
 
 		fmt.Println("---END UPDATE---")
