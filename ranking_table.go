@@ -97,7 +97,7 @@ func (table *RankingTable) Get(lastScore uint64, userID string) Rank {
 	if ok {
 		recordRank := record.Get(userID)
 
-		resultRank := (table.beginRank + recordRank)
+		resultRank := table.beginRank + recordRank + 1
 		fmt.Printf("table get: userID:%s last:%d begin:%d recordRank:%d result:%d\n", userID, lastScore, table.beginRank, recordRank, resultRank)
 		return resultRank
 	}
