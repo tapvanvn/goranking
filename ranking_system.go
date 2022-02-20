@@ -129,6 +129,10 @@ func (sys *RankingSystem) run() {
 
 			lastRank += Rank(table.numRecord)
 		}
+		if lastRank-1 > sys.maxRank {
+
+			sys.maxRank = lastRank - 1
+		}
 
 		fmt.Println("---END UPDATE---")
 		sys.tableMux.Unlock()
