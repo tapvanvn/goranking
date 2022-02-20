@@ -112,6 +112,8 @@ func (sys *RankingSystem) run() {
 
 		sys.tableMux.Lock()
 
+		fmt.Println("---BEGIN UPDATE---")
+
 		lastRank := Rank(0)
 
 		flip := false
@@ -133,6 +135,8 @@ func (sys *RankingSystem) run() {
 
 			flip = table.numRecord > 0
 		}
+
+		fmt.Println("---END UPDATE---")
 		sys.tableMux.Unlock()
 
 	}
