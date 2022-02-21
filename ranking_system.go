@@ -133,9 +133,9 @@ func (sys *RankingSystem) run() {
 
 			lastRank += Rank(table.numRecord)
 		}
-		if lastRank > sys.maxRank {
+		if lastRank-1 > sys.maxRank {
 
-			sys.maxRank = lastRank
+			sys.maxRank = lastRank - 1
 		}
 
 		//fmt.Println("---END UPDATE---")
